@@ -1,43 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!--<![endif]-->
+
   <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>WenLingang | Profile</title>
+    <!-- Meta -->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="WenLingang Profile" />
+    <meta name="author" content="WenLingang" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <script
       src="https://kit.fontawesome.com/44304cb626.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="./style.css" type="text/css" />
-    <title>Wen LinGang</title>
+    <link id="theme-style" rel="stylesheet" href="./css/styles.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
 
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-4">
-          <div class="nav_menu">
-            <nav class="nav flex-column">
-              <a class="nav-link active" href="#">Ruby</a>
-              <a class="nav-link" href="#">Rails</a>
-              <a class="nav-link" href="#">PostgreSQL</a>
-              <a class="nav-link" href="#">Gems</a>
-              <a class="nav-link" href="#">Docker</a>
-            </nav>
-          </div>
-        </div>
-        <div class="col-8">
-          <div class="content"></div>
+  <body class="sticky-page-nav">
+    <header class="header">
+      <div class="top-bar container-fluid">
+        <div class="actions">
+          <a class="btn hidden-xs" href="mailto:gang@tanmer.com"
+            ><i class="fa fa-paper-plane" aria-hidden="true"></i> Contact Me</a
+          >
         </div>
       </div>
+
+      <div class="intro">
+        <div class="container text-center">
+          <img class="profile-image" src="./img/profile-image.png" alt="" />
+          <h1 class="name">Wen Lingang</h1>
+          <div class="title">Full Stack Developer</div>
+          <div class="profile">
+            <p>
+              Ruby/Rails/PostgreSQL/Bootstrap/Gems
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-info">
+        <div class="container text-center">
+          <ul class="list-inline">
+            <li class="email">
+              <i class="fa fa-envelope"></i
+              ><a href="mailto:gang@tanmer.com">gang@tanmer.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="page-nav-space-holder hidden-xs">
+        <div id="page-nav-wrapper" class="page-nav-wrapper text-center fixed">
+          <div class="container">
+            <ul id="page-nav" class="nav page-nav list-inline">
+              <li class="">
+                <a class="scrollto" href="#Ruby-section">Ruby</a>
+              </li>
+              <li>
+                <a class="scrollto" href="#Rails-section">Rails</a>
+              </li>
+              <li>
+                <a class="scrollto" href="#PostgreSQL-section">PostgreSQL</a>
+              </li>
+              <li>
+                <a class="scrollto" href="#Bootstrap-section">Bootstrap</a>
+              </li>
+              <li>
+                <a class="scrollto" href="#Gems-section">Gems</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrapper container">
+      <section id="Ruby-section" class="experiences-section section">
+        <h2 class="section-title">Ruby Experiences</h2>
+        <div class="timeline">
+          <div class="item">
+            <div class="work-place">
+              <h3 class="place">Title</h3>
+              <!-- <div class="location">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>Mountain View
+              </div> -->
+            </div>
+            <div class="job-meta">
+              <div class="title">Time</div>
+              <!-- <div class="time">2016 - Present</div> -->
+            </div>
+            <div class="job-desc">
+              <p>
+                Description
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Rails Experiences -->
+      <section id="Rails-section" class="experiences-section section">
+        <h2 class="section-title">Rails Experiences</h2>
+      </section>
+      <!-- PostgreSQL Experiences -->
+      <section id="PostgreSQL-section" class="experiences-section section">
+        <h2 class="section-title">PostgreSQL Experiences</h2>
+      </section>
+      <!-- Bootstrap Experiences -->
+      <section id="Bootstrap-section" class="experiences-section section">
+        <h2 class="section-title">Bootstrap Experiences</h2>
+      </section>
+      <!-- Gems Experiences -->
+      <section id="Gems-section" class="experiences-section section">
+        <h2 class="section-title">Gems Experiences</h2>
+      </section>
     </div>
+
+    <footer class="footer text-center">
+      <div class="container">
+        <small class="copyright"
+          >Contact with <a href="mailto:gang@tanmer.com">me</a></small
+        >
+      </div>
+    </footer>
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/back-to-top.js"></script>
+    <script type="text/javascript" src="./js/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
   </body>
 </html>

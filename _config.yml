@@ -21,3 +21,8 @@
 permalink: pretty
 paginate: 10
 encoding: UTF-8
+exclude: [vendor]
+gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
+highlighter: rouge
+markdown: kramdown

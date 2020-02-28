@@ -1,33 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   {% include head.html %}
   <body class="profile-page sidebar-collapse">
     {% include header.html %}
 
     <div class="main main-raised">
-      <div class="profile-content">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 ml-auto mr-auto">
-              <div class="profile">
-                <div class="avatar">
-                  <img src="/assets/img/headshot.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-                </div>
-                <div class="name">
-                  <h3 class="title">Wen Lin Gang</h3>
-                  <h6>Ruby & Full-stack programmer @ Lifelong learner.</h6>
-                  <a href="https://github.com/wenlingang" class="btn btn-just-icon btn-link btn-dribbble" target="_blank"><i class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="description text-center">
-            <p>You build it, You run it.</p>
-          </div>
-          <!-- TODO: BLOG LIST -->
-          <div class="row"></div>
-        </div>
-      </div>
+      {% include profile_content.html %}
 
       {{ content }}
     </div>

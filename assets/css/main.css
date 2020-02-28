@@ -869,3 +869,19 @@
   color: #fff;
   background-color: #03c9a9;
 }
+
+p.subtitle {
+  margin-bottom: 0;
+}
+
+.subtitle {
+  color: #777;
+}
+
+h3.post-title {
+  margin: 0;
+}
+
+.post-link:hover {
+  text-decoration: underline;
+}

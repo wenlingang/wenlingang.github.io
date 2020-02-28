@@ -167,14 +167,14 @@ sup {
 }
 
 a {
-  color: #03c9a9;
+  color: #303030;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 
 a:hover {
-  color: #0a6ebd;
+  color: #03c9a9;
   text-decoration: underline;
 }
 
@@ -571,14 +571,14 @@ sup {
 }
 
 a {
-  color: #03c9a9;
+  color: #303030;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 
 a:hover {
-  color: #0a6ebd;
+  color: #03c9a9;
   text-decoration: underline;
 }
 
@@ -10939,7 +10939,7 @@ legend {
 }
 
 a {
-  color: #03c9a9;
+  color: #303030;
 }
 
 a:hover,

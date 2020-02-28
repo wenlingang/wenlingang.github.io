@@ -7,24 +7,21 @@ redirect_to: false
 <div class="section section-basic">
   <div class="container">
     <div class="title">
-      <h2>Posts</h2>
+      <h2>Recent Posts</h2>
     </div>
     <div class="row">
       <div class="col-md-10">
         <div class="post-list">
-          <div class="post-item">
-            <h3><a href="#">Posts Lists</a></h3>
-          </div>
+          {% for post in site.posts %}
+            <div class="post-item">
+              <i class="subtitle">{{ site.time | date_to_long_string }}</i>
+              <h3 class="post-title"><a class="post-link" href="{{ post.url }}">{{ post.title }}</a></h3>
+            </div>
+          {% endfor %}
         </div>
       </div>
       <div class="col-md-2">
-        <a href="/" class="btn btn-outline-primary btn-block">Ruby</a>
-        <a href="/" class="btn btn-outline-primary btn-block">Rails</a>
-        <a href="/" class="btn btn-outline-primary btn-block">PostgreSQL</a>
-        <a href="/" class="btn btn-outline-primary btn-block">Gems</a>
-        <a href="/" class="btn btn-outline-primary btn-block">HTML&CSS</a>
-        <a href="/" class="btn btn-outline-primary btn-block">Docker</a>
-        <a href="/" class="btn btn-outline-primary btn-block">More</a>
+        <a href="/ruby" class="btn btn-outline-primary btn-block">Ruby</a>
       </div>
     </div>
   </div>

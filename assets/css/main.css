@@ -885,3 +885,12 @@ h3.post-title {
 .post-link:hover {
   text-decoration: underline;
 }
+
+p {
+  font-size: 16px;
+  font-weight: 350;
+}
+
+.text-indent-2 {
+  text-indent: 2em;
+}

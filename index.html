@@ -21,7 +21,10 @@ redirect_to: false
         </div>
       </div>
       <div class="col-md-2">
-        <a href="/ruby" class="btn btn-outline-primary btn-block">Ruby</a>
+        {% for category in site.categories %}
+          {% capture category_name %}{{ category | first }}{% endcapture %}
+          <a href="/{{ category_name }}" class="btn btn-outline-primary btn-block">{{ category_name }}</a>
+        {% endfor %}
       </div>
     </div>
   </div>

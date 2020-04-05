@@ -15,14 +15,10 @@
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Blog</a>
             <div class="dropdown-menu dropdown-with-icons">
-              <a href="/" class="dropdown-item">Ruby</a>
-              <a href="/" class="dropdown-item">Rails</a>
-              <a href="/" class="dropdown-item">PostgreSQL</a>
-              <a href="/" class="dropdown-item">Gems</a>
-              <a href="/" class="dropdown-item">HTML&CSS</a>
-              <a href="/" class="dropdown-item">Docker</a>
-              <a href="/" class="dropdown-item">macOS</a>
-              <a href="/" class="dropdown-item">Ubuntu</a>
+              {% for category in site.categories %}
+                {% capture category_name %}{{ category | first }}{% endcapture %}
+                <a href="/{{ category_name }}" class="dropdown-item">{{ category_name }}</a>
+              {% endfor %}
             </div>
           </li>
           <li class="nav-item">
@@ -30,9 +26,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">Talk</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">Recommend</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">Donate</a>

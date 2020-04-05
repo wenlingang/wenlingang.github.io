@@ -894,3 +894,11 @@ p {
 .text-indent-2 {
   text-indent: 2em;
 }
+
+.main .content {
+  padding: 15px 20px;
+}
+
+.post-list .post-item {
+  margin: 15px 0;
+}

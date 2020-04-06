@@ -17,7 +17,7 @@
             <div class="dropdown-menu dropdown-with-icons">
               {% for category in site.categories %}
                 {% capture category_name %}{{ category | first }}{% endcapture %}
-                <a href="/{{ category_name }}" class="dropdown-item">{{ category_name }}</a>
+                <a href="/{{ category_name }}" class="dropdown-item text-capitalize">{{ category_name }}</a>
               {% endfor %}
             </div>
           </li>
@@ -27,9 +27,6 @@
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">Talk</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">Donate</a>
-          </li> -->
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://github.com/wenlingang" target="_blank" data-original-title="Follow me on GitHub">
               <i class="fa fa-github"></i>

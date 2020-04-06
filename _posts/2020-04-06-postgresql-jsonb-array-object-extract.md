@@ -1,9 +1,9 @@
 ---
 layout: application
-title: postgreSQL jsonb array object extract
+title: PostgreSQL jsonb array object extract
 categories: postgresql
 ---
-## postgreSQL jsonb array object extract
+## PostgreSQL jsonb array object extract
 
 > https://www.postgresql.org/docs/9.4/functions-json.html
 

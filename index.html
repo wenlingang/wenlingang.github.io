@@ -23,7 +23,7 @@ redirect_to: false
       <div class="col-md-2">
         {% for category in site.categories %}
           {% capture category_name %}{{ category | first }}{% endcapture %}
-          <a href="/{{ category_name }}" class="btn btn-outline-primary btn-block">{{ category_name }}</a>
+          <a href="/{{ category_name }}" class="btn btn-outline-primary btn-block text-capitalize">{{ category_name }}</a>
         {% endfor %}
       </div>
     </div>

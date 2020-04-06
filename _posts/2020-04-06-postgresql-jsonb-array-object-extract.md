@@ -5,6 +5,8 @@ categories: postgresql
 ---
 ## postgreSQL jsonb array object extract
 
+> https://www.postgresql.org/docs/9.4/functions-json.html
+
 在rails开发中，如果使用了 postgreSQL 的 `jsonb` 数据类型，可能会遇到这样的数据场景：有一个表 `table` 有 `jsonb` 类型字段 `data` 中有如下数据：
 
 ```json

@@ -18,6 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+url: https://wenlingang.github.io
 permalink: pretty
 paginate: 10
 encoding: UTF-8
@@ -31,3 +32,9 @@ kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: 'highlight'
+sitemap:
+  filename: "/sitemap.xml"
+  exclude:
+    - "/404.html"
+  include_posts:
+      - "/index.html"

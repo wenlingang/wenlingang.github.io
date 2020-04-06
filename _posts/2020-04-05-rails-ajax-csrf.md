@@ -5,7 +5,7 @@ categories: rails
 ---
 ## Ajax Can't verify CSRF token authenticity rails
 
-发生此错误是因为发送Ajax请求时，头信息中没有加入rails的csrf-token，导致请求头信息验证失败
+> 在rails开发中，经常会遇到需要异步请求的需求，这个时候使用jQuery的Ajax十分方便，但是在使用过程中，我们有时会遇到：`Can't verify CSRF token authenticity` 发生此错误是因为在rails中发送Ajax请求时，头信息中没有加入csrf-token，导致请求头信息验证失败
 
 1. 确保在layout中加入了下方代码：
     ```erb
@@ -24,7 +24,7 @@ categories: rails
     });
     ```
 
-3. 如果要全局添加，则：
+3. 如果要全局添加，则在全局引用下面代码：
     ```javascript
     $.ajaxSetup({
       headers: {

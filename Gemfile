@@ -14,7 +14,7 @@ gem "minima", "~> 2.5"
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
 # gem "github-pages", group: :jekyll_plugins
 gem 'jekyll-paginate', '~> 1.1'
-gem "kramdown", "~> 2.1.0"
+gem "kramdown", "~> 2.3.1"
 gem 'rouge', '~> 3.16'
 
 group :development, :test do

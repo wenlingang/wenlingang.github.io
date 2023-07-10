@@ -1,9 +1,9 @@
 ---
 layout: application
-title: 如何在 Ubuntu 上升级 Docker 版本
+title: 如何在 Ubuntu 上升级 Docker
 categories: docker
 ---
-## 如何在 Ubuntu 上升级 Docker 版本
+## 如何在 Ubuntu 上升级 Docker
 
 - 检查当前版本
 

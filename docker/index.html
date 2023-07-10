@@ -9,7 +9,7 @@ layout: application
         <div class="post-list">
           {% for post in site.categories.docker %}
             <div class="post-item">
-              <i class="subtitle">{{ site.time | date_to_long_string }}</i>
+              <i class="subtitle">{{ post.date | date_to_long_string }}</i>
               <h3 class="post-title"><a class="post-link" href="{{ post.url }}">{{ post.title }}</a></h3>
             </div>
           {% endfor %}

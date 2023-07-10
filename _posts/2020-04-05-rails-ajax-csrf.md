@@ -2,6 +2,7 @@
 layout: application
 title: Ajax Can't verify CSRF token authenticity rails
 categories: rails
+date: 2020-04-05
 ---
 ## Ajax Can't verify CSRF token authenticity rails
 

@@ -2,6 +2,7 @@
 layout: application
 title: PostgreSQL jsonb array object extract
 categories: postgresql
+date: 2020-04-06
 ---
 ## PostgreSQL jsonb array object extract
 

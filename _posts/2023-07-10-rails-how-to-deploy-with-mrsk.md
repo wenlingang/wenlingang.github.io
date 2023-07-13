@@ -38,4 +38,27 @@ gem install mrsk
 mrsk init
 ```
 
-执行完成后会生成一个 YML 文件 `config/deploy.yml`
+执行完成后会生成一个 YML 文件 `config/deploy.yml`，仔细阅读文件中的样例会帮助你更容易理解部署相关的内容
+
+- 打包项目
+
+> [使用 Docker 优化打包 Rails](https://wenlingang.github.io/rails/2020/07/10/package-rails-by-docker/) 
+
+- 服务器安装 Docker
+
+- 配置数据库 Secret & Deploy Key
+
+- 配置 Github SSH 用于自动发布
+
+- 配置 Github Actions
+
+- 配置 Mrsk
+
+- HTTP & HTTPS 配置
+
+- 问题及解决
+
+- 完整 deploy.yml
+
+### 已有项目如何配合使用？已 Nginx 为例
+

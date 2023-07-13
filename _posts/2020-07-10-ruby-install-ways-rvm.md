@@ -40,6 +40,40 @@ brew install gnupg gnupg2
 \curl -sSL https://get.rvm.io | bash -s stable
 ```
 
+- 换 RVM 源提高 Ruby 安装速度
+
+```shell
+echo "ruby_url=https://cache.ruby-china.com/pub/ruby" > /usr/local/rvm/user/db
+```
+
+- 换 GEM 源提高 Ruby 安装速度
+
+二选一即可
+
+```shell
+# ruby-china
+gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+
+# tsinghua edu
+gem sources --add https://mirrors.tuna.tsinghua.edu.cn/rubygems/ --remove https://rubygems.org/
+```
+
+如果已经有 Rails 项目，则还需要将 Gemfile 中的 `source "https://rubygems.org"` 替换为上面的源地址，如：`source "https://gems.ruby-china.com/"`
+
+- 安装 Bunlder 并替换默认源
+
+```shell
+gem install bunlder
+```
+
+```shell
+# ruby-china
+bundle config mirror.https://rubygems.org https://gems.ruby-china.com
+
+# tsinghua edu
+bundle config mirror.https://rubygems.org https://mirrors.tuna.tsinghua.edu.cn/rubygems
+```
+
 - 安装稳定版本的 Rails 和 Ruby
 
 ```shell

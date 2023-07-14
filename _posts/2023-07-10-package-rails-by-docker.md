@@ -337,7 +337,7 @@ docker build . -t myapp-alpine-v3
 
 对比与前者打包结果
 
-```base
+```bash
 REPOSITORY          TAG       SIZE
 myapp-alpine-v3     latest    174MB
 myapp-alpine-v2     latest    300MB

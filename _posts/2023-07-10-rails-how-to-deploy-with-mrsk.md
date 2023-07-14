@@ -6,6 +6,12 @@ date: 2020-07-10
 ---
 ## 如何使用 Mrsk 快速部署一个 Rails 服务
 
+### 依赖环境
+
+> docker: 23.0.5
+
+> mrsk: 0.14.0
+
 ### 参考链接
 
 > https://github.com/mrsked/mrsk
@@ -45,6 +51,8 @@ mrsk init
 > [使用 Docker 优化打包 Rails](https://wenlingang.github.io/rails/2020/07/10/package-rails-by-docker/) 
 
 - 服务器安装 Docker
+
+> [Ubuntu 上升级安装 Docker](https://wenlingang.github.io/docker/2020/07/10/docker-how-to-upgrade-docker-on-ubuntu/) 
 
 - 配置数据库 Secret & Deploy Key
 

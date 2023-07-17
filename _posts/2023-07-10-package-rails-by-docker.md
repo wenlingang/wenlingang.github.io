@@ -174,7 +174,7 @@ myapp-alpine        latest  1.16GB
 
 对比 `ruby:3.2.1` 和 `ruby:3.2.1-alpine` 的结果看是小了一些，但作为实际生产用仍然太大，我们还可以继续优化 docker 打包流程
 
-```base
+```bash
 REPOSITORY          TAG       SIZE
 myapp-alpine        latest    1.16GB
 myapp               latest    1.39GB
@@ -250,7 +250,7 @@ docker build . -t myapp-alpine-v2
 
 对比与前者打包结果
 
-```base
+```bash
 REPOSITORY          TAG       SIZE
 myapp-alpine-v2     latest    300MB
 myapp-alpine        latest    1.16GB

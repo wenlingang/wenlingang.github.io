@@ -2,9 +2,8 @@
 layout: application
 title: 使用 RVM 安装管理 Ruby 版本
 categories: ruby
-date: 2020-02-23
+date: 2020-07-10
 ---
-
 
 ## RVM
 

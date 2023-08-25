@@ -14,7 +14,7 @@ date: 2023-08-25
 
 ```ruby
 class MyController < ApplicationController
-	include ActionController::Live
+  include ActionController::Live
 end
 ```
 
@@ -24,23 +24,23 @@ end
 
 ```ruby
 class MyController < ApplicationController
-	include ActionController::Live
+  include ActionController::Live
 
-	def stream
-		response.headers['Content-Type'] = 'text/event-stream'
-		response.headers['Last-Modified'] = Time.now.httpdate
-		sse = SSE.new(response.stream, retry: 300, event: 'event-name')
+  def stream
+    response.headers['Content-Type'] = 'text/event-stream'
+    response.headers['Last-Modified'] = Time.now.httpdate
+    sse = SSE.new(response.stream, retry: 300, event: 'event-name')
 		
-		# 在这里编写发送事件的逻辑
-		5.times do |i|
-			sse.write({ message: "Hello - #{i}" })
-			sse.write({ message: "Hello again - #{i}" })
-		end
-	rescue ActionController::Live::ClientDisconnected
-		sse.close
-	ensure
-		sse.close
-	end
+    # 在这里编写发送事件的逻辑
+    5.times do |i|
+      sse.write({ message: "Hello - #{i}" })
+      sse.write({ message: "Hello again - #{i}" })
+    end
+  rescue ActionController::Live::ClientDisconnected
+    sse.close
+  ensure
+    sse.close
+  end
 end
 ```
 
@@ -58,7 +58,7 @@ get '/stream', to: 'my#stream'
 const source = new EventSource('/stream')
 
 source.onopen = (event) {
-	console.log('Connection was opened', event)
+  console.log('Connection was opened', event)
 }
 
 source.onmessage = (event) => {
@@ -66,6 +66,6 @@ source.onmessage = (event) => {
 };
 
 source.onerror = (event) {
-	console.error("Connection was failed:", err)
+  console.error("Connection was failed:", err)
 }
 ```

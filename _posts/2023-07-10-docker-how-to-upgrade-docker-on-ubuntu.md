@@ -4,7 +4,7 @@ title: 如何在 Ubuntu 上升级 Docker
 categories: docker
 date: 2023-07-10
 ---
-## 如何在 Ubuntu 上升级 Docker
+### 如何在 Ubuntu 上升级 Docker
 
 - 检查当前版本
 

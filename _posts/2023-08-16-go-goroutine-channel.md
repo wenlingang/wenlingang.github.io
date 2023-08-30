@@ -4,7 +4,7 @@ title: Go 中 Goroutine 和 Channel 的使用
 categories: go
 date: 2023-08-16
 ---
-## Go 中 Goroutine 和 Channel 的使用
+### Go 中 Goroutine 和 Channel 的使用
 
 ### Goroutine
 

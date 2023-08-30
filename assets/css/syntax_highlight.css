@@ -418,9 +418,9 @@
 
 blockquote {
   color: #7f8fa4;
-  font-size: inherit;
-  padding: 8px 24px;
-  margin: 16px 0;
+  font-size: .85rem;
+  padding: 8px;
+  margin: 8px 0;
   border-left: 3px solid #eaeaea;
 }
 

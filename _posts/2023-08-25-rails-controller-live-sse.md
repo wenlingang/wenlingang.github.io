@@ -4,7 +4,7 @@ title: 使用 Rails 的 ActionController::Live::SSE（服务器发送事件）
 categories: rails
 date: 2023-08-25
 ---
-## 使用 Rails 的 ActionController::Live::SSE（服务器发送事件）
+### 使用 Rails 的 ActionController::Live::SSE（服务器发送事件）
 
 > 在 Rails 中，ActionController::Live::SSE 是一个用于实现服务器发送事件（Server-Sent Events）的功能的模块。服务器发送事件是一种在客户端和服务器之间实现实时双向通信的技术。
 

@@ -4,7 +4,7 @@ title: Go 中在没有上下文的场景注入 Trace 信息
 categories: go
 date: 2023-08-08
 ---
-## Go 中在没有上下文的场景注入 Trace 信息
+### Go 中在没有上下文的场景注入 Trace 信息
 
 ### Kafka 消费示例
 

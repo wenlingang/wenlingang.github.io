@@ -4,7 +4,7 @@ title: Ruby Sources
 categories: ruby
 date: 2022-08-10
 ---
-## Ruby Sources
+### Ruby Sources
 
 在安装 Ruby 或者平时使用 Rails 的过程经常遇到卡顿的问题，可以使用替换源代替
 

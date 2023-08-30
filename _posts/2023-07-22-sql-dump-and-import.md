@@ -4,7 +4,7 @@ title: SQL dump and import
 categories: postgresql
 date: 2023-07-22
 ---
-## SQL dump and import
+### SQL dump and import
 
 ### [PostgreSQL](https://www.postgresql.org)
 

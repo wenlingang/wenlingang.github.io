@@ -10,7 +10,7 @@ layout: application
           {% for post in site.categories.rails %}
             <div class="post-item">
               <i class="subtitle">{{ site.time | date_to_long_string }}</i>
-              <h3 class="post-title"><a class="post-link" href="{{ post.url }}">{{ post.title }}</a></h3>
+              <h4 class="post-title"><a class="post-link" href="{{ post.url }}">{{ post.title }}</a></h4>
             </div>
           {% endfor %}
         </div>

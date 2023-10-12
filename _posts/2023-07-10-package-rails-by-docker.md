@@ -219,7 +219,7 @@ COPY . .
 RUN NODE_OPTIONS=--openssl-legacy-provider RAILS_ENV=production bundle exec rails assets:precompile
 
 ############### 引用构建好的基础包 ###############
-FROM ruby:2.5.1-alpine
+FROM ruby:3.2.1-alpine
 
 ARG RAILS_ROOT=/app
 
@@ -306,7 +306,7 @@ RUN NODE_OPTIONS=--openssl-legacy-provider RAILS_ENV=production bundle exec rail
     rm -rf node_modules tmp/cache vendor/assets test
 
 ############### 引用构建好的基础包 ###############
-FROM ruby:2.5.1-alpine
+FROM ruby:3.2.1-alpine
 
 ARG RAILS_ROOT=/app
 

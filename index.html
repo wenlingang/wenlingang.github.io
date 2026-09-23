@@ -1,66 +1,189 @@
----
-layout: application
-permalink: /
-redirect_to: false
----
-<!-- Posts -->
-<div class="section section-basic">
-  <div class="container">
-    <div class="title">
-      <h3>Recently</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>wick</title>
+  <meta name="description" content="wick is a full-stack engineer. You build it, you run it.">
+  <meta name="theme-color" content="#150e22">
+  <meta property="og:title" content="wick">
+  <meta property="og:description" content="Full-stack engineer. You build it, you run it.">
+  <meta property="og:image" content="https://wenlingang.github.io/assets/headshot.png">
+  <link rel="icon" type="image/png" href="/assets/headshot.png">
+  <link rel="apple-touch-icon" href="/assets/headshot.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to work</a>
+
+  <header class="nav">
+    <a class="brand" href="/">
+      <img src="/assets/headshot.png" alt="" width="32" height="32">
+      <span>wick</span>
+    </a>
+    <p class="status" id="status" aria-hidden="true"><i></i><span id="status-text">idle</span><span class="count" id="status-count"></span></p>
+    <nav aria-label="Page">
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/wenlingang" rel="me">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="session">
+    <div class="name-stage">
+      <h1 class="name-text">wick</h1>
+      <canvas class="name-field" id="field" aria-hidden="true"></canvas>
     </div>
-    <div class="row">
-      <div class="col-md-10">
-        <div class="post-list">
-          {% for post in site.posts %}
-            <div class="post-item">
-              <i class="subtitle">{{ post.date | date_to_long_string }}</i>
-              <h4 class="post-title"><a class="post-link" href="{{ post.url }}">{{ post.title }}</a></h4>
-            </div>
-          {% endfor %}
+
+    <!--
+      The page is one agent run: it thinks, then calls tools in order, and each
+      tool result is a section of the page. Later steps run when scrolled into view.
+    -->
+    <ol class="trace">
+      <li class="step" data-step="think">
+        <p class="think"><span class="think-label" id="think-label">Thought for 1.2s</span><span class="think-text" id="think-text">Someone wants to know who wick is. Start with his profile, then show what he's built.</span></p>
+      </li>
+
+      <li class="step" data-step="bio">
+        <p class="call"><span class="st" aria-hidden="true"></span><code><b>read_file</b>("wick/profile.md")</code><span class="dur"></span></p>
+        <div class="result">
+          <div class="bio" id="bio">
+            <!-- The intro is rendered from the BIO array in assets/site.js; this plain text shows without JS -->
+            <p class="bio-fallback">I'm wick, a full-stack engineer.</p>
+            <p class="bio-fallback">I live by one rule: you build it, you run it.</p>
+            <p class="bio-fallback">These days I'm putting serious time into learning AI.</p>
+            <svg class="attn" id="attn" aria-hidden="true"></svg>
+          </div>
+
+          <div class="controls" id="controls" hidden>
+            <label class="temp">
+              <span>Temperature</span>
+              <input type="range" id="temp" min="0" max="1.5" step="0.1" value="0.8">
+              <output id="temp-out" for="temp">0.8</output>
+            </label>
+            <button type="button" class="btn" id="regen">Regenerate</button>
+            <p class="stats" id="stats" aria-live="polite"></p>
+          </div>
+          <p class="hint" id="hint" hidden>Hover or tap an underlined word to see the other words the model considered. Gold arcs show which earlier words it attended to. Turn up the temperature and regenerate to sample new ones. The probabilities are made up.</p>
+          <div class="pop" id="pop" role="tooltip" hidden></div>
         </div>
-      </div>
-      <div class="col-md-2">
-        {% for category in site.categories %}
-          {% capture category_name %}{{ category | first }}{% endcapture %}
-          <a href="/{{ category_name }}" class="btn btn-outline-primary btn-block text-capitalize">{{ category_name }}</a>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Photos -->
-<!-- <div class="section section-basic">
-  <div class="container">
-    <div class="title">
-      <h2>Photos</h2>
-    </div>
-    <div class="row">
-      <div class="col-md-12 mr-auto ml-auto">
-        <div class="card card-raised card-carousel">
-          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img class="d-block w-100" src="/assets/img/sliders/path" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4>image title</h4>
-                </div>
+      </li>
+
+      <li class="step" data-step="work" id="work">
+        <p class="call"><span class="st" aria-hidden="true"></span><code><b>list_projects</b>({ owner: "wenlingang" })</code><span class="dur"></span></p>
+        <div class="result">
+          <div class="section-head">
+            <h2>Work</h2>
+            <p>6 projects found.</p>
+          </div>
+
+          <!--
+            To add a project: copy an <a class="card">, then fill in the link, title,
+            one-line description and tags. Update the count above too.
+          -->
+          <div class="grid">
+            <a class="card" href="https://github.com/wenlingang/datum-releases">
+              <div class="card-art art-code art-sql" aria-hidden="true">
+                <p class="ask"><i>›</i>add 10 test users</p>
+                <p><b>INSERT INTO</b> users (name, email)</p>
+                <p><b>SELECT</b> 'user_' || n, n || '@example.com'</p>
+                <p><b>FROM</b> generate_series(1, 10) <b>AS</b> n;</p>
+                <p class="confirm">Run this query?</p>
               </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="/assets/img/sliders/path" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4>image title</h4>
-                </div>
+              <h3>Datum</h3>
+              <p>A lightweight desktop database client for PostgreSQL, MySQL, SQLite and Redis. Its AI assistant turns plain English into SQL, and nothing runs until you confirm it.</p>
+              <ul class="tags"><li>Tauri</li><li>Rust</li><li>React</li></ul>
+            </a>
+
+            <a class="card" href="https://github.com/wenlingang/kamal-panel">
+              <div class="card-art art-matrix" aria-hidden="true">
+                <span></span><b>host-1</b><b>host-2</b><b>host-3</b><b>host-4</b>
+                <b>web</b><i></i><i></i><i></i><i></i>
+                <b>api</b><i></i><i></i><i class="warn"></i><i></i>
+                <b>worker</b><i></i><i></i><i class="off"></i><i class="off"></i>
               </div>
-            </div>
+              <h3>kamal-panel</h3>
+              <p>A read-only dashboard for apps deployed with Kamal. It shows every app on every host at a glance, so you can tell if anything is broken without SSHing into each box.</p>
+              <ul class="tags"><li>Ruby</li><li>Rails 8</li><li>Kamal</li></ul>
+            </a>
+
+            <a class="card" href="https://github.com/wenlingang/go-socketio2-client">
+              <div class="card-art art-code art-wire" aria-hidden="true">
+                <p class="in"><i>←</i>0{"sid":"Kx3v"}</p>
+                <p class="in"><i>←</i>40</p>
+                <p class="out"><i>→</i>42["join","lobby"]</p>
+                <p class="out"><i>→</i>2</p>
+                <p class="in"><i>←</i>3</p>
+              </div>
+              <h3>go-socketio2-client</h3>
+              <p>A small Go client for the legacy Socket.IO v2 protocol, which no maintained Go library supports. It's tested against the real socket.io-client 2.0.4 packages, not just the spec.</p>
+              <ul class="tags"><li>Go</li><li>WebSocket</li><li>Socket.IO</li></ul>
+            </a>
+
+            <a class="card" href="https://github.com/wenlingang/abc-ruby-sdk">
+              <div class="card-art art-code" aria-hidden="true">
+                <p>{"amount":"100.00","currency":"CNY"}</p>
+                <p><b>↓ AES-192-CBC</b> encrypt</p>
+                <p>9f2c1a07d3b8…e04b</p>
+                <p><b>↓ SHA256withRSA</b> sign</p>
+                <p class="hl">signature verified</p>
+              </div>
+              <h3>abc-ruby-sdk</h3>
+              <p>A Ruby SDK for the Agricultural Bank of China's Open Banking API. It handles the bank's encryption protocol, AES-192-CBC for messages and SHA256withRSA for signatures, and covers authorization, corporate payments and e-CNY wallet payments.</p>
+              <ul class="tags"><li>Ruby</li><li>AES</li><li>RSA</li></ul>
+            </a>
+
+            <a class="card" href="https://github.com/wenlingang/bocd-ruby-sdk">
+              <div class="card-art art-code" aria-hidden="true">
+                <p><b>connect</b> tcp://127.0.0.1:10010</p>
+                <p><span class="hl">0000000187</span>&lt;?xml version="1.0"?&gt;</p>
+                <p>&lt;request&gt;…&lt;/request&gt;</p>
+                <p><span class="hl">0000000213</span>&lt;response&gt;…&lt;/response&gt;</p>
+                <p><b>close</b></p>
+              </div>
+              <h3>bocd-ruby-sdk</h3>
+              <p>A Ruby SDK for Bank of Chengdu's treasury system. It talks to the bank's on-premise gateway over TCP using length-prefixed XML messages, and wraps every business API.</p>
+              <ul class="tags"><li>Ruby</li><li>TCP</li><li>XML</li></ul>
+            </a>
+
+            <a class="card" href="https://github.com/wenlingang/wenlingang.github.io">
+              <div class="card-art art-tokens" aria-hidden="true">
+                <span>I'm</span><span class="hot">wick</span><span>, a</span><span class="hot">full-stack</span><span>engineer</span>
+              </div>
+              <h3>This homepage</h3>
+              <p>Built with AI. The page plays out as a single agent session: the name is drawn in particles and the intro streams in token by token. Plain HTML, CSS and JS.</p>
+              <ul class="tags"><li>HTML</li><li>CSS</li><li>Canvas</li></ul>
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div> -->
+      </li>
+
+      <li class="step" data-step="contact" id="contact">
+        <p class="call"><span class="st" aria-hidden="true"></span><code><b>get_contact</b>()</code><span class="dur"></span></p>
+        <div class="result">
+          <h2>Say hi</h2>
+          <a class="mail" href="mailto:wen.sprint@gmail.com">wen.sprint@gmail.com</a>
+          <ul class="links">
+            <li><span class="k">GitHub</span><a href="https://github.com/wenlingang" rel="me">wenlingang</a></li>
+            <li>
+              <span class="k">WeChat</span><button type="button" class="copy" data-copy="AwenAnba">AwenAnba</button>
+              <span class="copied" aria-live="polite"></span>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </main>
+
+  <footer class="foot">
+    <p>© <span id="year">2026</span> wick</p>
+  </footer>
+
+  <script src="/assets/core.js" defer></script>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

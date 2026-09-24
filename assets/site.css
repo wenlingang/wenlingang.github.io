@@ -198,7 +198,10 @@ a { color: inherit; }
   font-size: 14px;
   color: var(--muted);
 }
+.call code { min-width: 0; }
 .call b { font-weight: 500; color: var(--text); }
+/* Arguments wrap as one unit, so a narrow screen breaks after the tool name, not mid-argument. */
+.call .args { display: inline-block; white-space: nowrap; }
 .call .dur { font-size: 12px; }
 
 /* Step dot: hollow when queued, spinning while running, solid gold when done. */
@@ -381,7 +384,7 @@ h2 {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 20px;
 }
 @media (min-width: 720px) {
@@ -562,6 +565,12 @@ a.card:hover { border-color: var(--violet); }
 @media (max-width: 640px) {
   body { font-size: 16px; }
   :root { --rail: 24px; }
+  .call { font-size: 13px; }
+  /* A fixed 2:1 box is too short at phone width; let previews grow to fit. */
+  .card-art { aspect-ratio: auto; min-height: 150px; }
+  .art-code { padding: 16px; }
+  .art-matrix { gap: 10px 4px; padding: 16px 12px; }
+  .art-matrix b:nth-child(-n + 5) { font-size: 10px; }
   .nav { gap: 10px; }
   .nav nav a:last-child { display: none; }
   .status .count { display: none; }

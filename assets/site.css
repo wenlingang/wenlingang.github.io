@@ -515,6 +515,78 @@ a.card:hover { border-color: var(--violet); }
 
 /* ---------- Contact ---------- */
 
+.step.waiting .st { border-color: var(--gold); animation: pulse 1.2s ease-in-out infinite; }
+
+.prompt {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  max-width: 32em;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.5rem);
+  cursor: text;
+}
+.prompt:focus-within { border-bottom-color: var(--gold); }
+.prompt > i { font-style: normal; color: var(--gold); }
+/* The real input is invisible and sits on top; the text and the blinking caret beside it are what you see */
+.prompt-line { position: relative; flex: 1; min-width: 0; min-height: 1.4em; white-space: nowrap; overflow: hidden; }
+.prompt .typed { white-space: pre; }
+.prompt-line input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: transparent;
+  caret-color: transparent;
+  opacity: 0;
+}
+.prompt-line input:focus { outline: none; }
+.prompt .caret { width: 0.55em; height: 1.1em; vertical-align: -0.2em; margin-left: 0; opacity: 0.85; }
+.prompt.off { opacity: 0.6; }
+.prompt.off .caret { display: none; }
+.prompt.nope { animation: nope 0.3s; }
+@keyframes nope { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+.reply { margin: 14px 0 0; min-height: 1.7em; color: var(--muted); }
+.reply:empty { display: none; }
+
+.goat-think { margin-top: 24px; }
+.goat-think[hidden] { display: none; }
+.think-bar {
+  display: block;
+  max-width: 20em;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+.think-bar i { display: block; width: 0; height: 100%; background: var(--gold); border-radius: 2px; }
+
+.goat { text-align: center; padding-bottom: 48px; }
+.goat .name-text { font-size: clamp(48px, 10vw, 120px); }
+.goat .name-field { height: min(70vh, 96vw, 620px); }
+.goat .dust {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.goat .name-stage:not(.live) .dust { display: none; }
+.goat-name {
+  margin: 8px 0 20px;
+  font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.goat .name-stage:not(.live) + .goat-name { display: none; }
+
 .mail {
   display: inline-block;
   margin-top: 12px;
@@ -572,13 +644,13 @@ a.card:hover { border-color: var(--violet); }
   .art-matrix { gap: 10px 4px; padding: 16px 12px; }
   .art-matrix b:nth-child(-n + 5) { font-size: 10px; }
   .nav { gap: 10px; }
-  .nav nav a:last-child { display: none; }
+  .nav nav a:last-child:not(.back) { display: none; }
   .status .count { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .caret, .status.busy i, .step.running .st { animation: none; }
+  .caret, .status.busy i, .step.running .st, .step.waiting .st, .prompt.nope { animation: none; }
   .attn path { animation: none; stroke-dashoffset: 0 !important; }
   .step.shown .card { animation: none; }
   .tok, .card { transition: none; }

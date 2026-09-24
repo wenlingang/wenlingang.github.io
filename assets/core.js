@@ -32,10 +32,11 @@ function createStatus() {
 
 // ---------- Particle field ----------
 // build(ctx, W, H) draws a shape on an offscreen canvas and returns the
-// particles' home positions as [{ x, y }]. Particles fly in on reveal(),
+// particles' home positions as [{ x, y, s? }], where s scales that particle's
+// size (default 1). Particles fly in on reveal(),
 // scatter away from the pointer, and light up gold when a pulse passes.
 
-function createField(canvas, { build, ready }) {
+function createField(canvas, { build, ready, palette = ["--violet", "--gold"] }) {
   const stage = canvas.parentElement;
   const ctx = canvas.getContext("2d");
   const BUCKETS = 6;
@@ -53,11 +54,11 @@ function createField(canvas, { build, ready }) {
     return [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16));
   }
 
-  // Precompute a violet-to-gold ramp; particles are drawn in buckets by activation.
+  // Precompute a rest-to-active color ramp; particles are drawn in buckets by activation.
   function readColors() {
     const cs = getComputedStyle(document.documentElement);
-    const a = rgb(cs.getPropertyValue("--violet"));
-    const b = rgb(cs.getPropertyValue("--gold"));
+    const a = rgb(cs.getPropertyValue(palette[0]));
+    const b = rgb(cs.getPropertyValue(palette[1]));
     colors = Array.from({ length: BUCKETS }, (_, i) => {
       const t = i / (BUCKETS - 1);
       const c = a.map((v, k) => Math.round(v + (b[k] - v) * t));
@@ -78,8 +79,8 @@ function createField(canvas, { build, ready }) {
     off.width = W;
     off.height = H;
     // On resize, particles land in their new homes without replaying the intro.
-    parts = build(off.getContext("2d", { willReadFrequently: true }), W, H).map(({ x, y }) => ({
-      hx: x, hy: y, x, y, vx: 0, vy: 0, a: 0, start: 0,
+    parts = build(off.getContext("2d", { willReadFrequently: true }), W, H).map(({ x, y, s = 1 }) => ({
+      hx: x, hy: y, x, y, s, vx: 0, vy: 0, a: 0, start: 0,
     }));
     draw();
   }
@@ -94,6 +95,11 @@ function createField(canvas, { build, ready }) {
       if (now > p.start) {
         p.vx = (p.vx + (p.hx - p.x) * 0.018) * 0.84;
         p.vy = (p.vy + (p.hy - p.y) * 0.018) * 0.84;
+      } else {
+        // Still airborne from a toss: drag slows it and it drifts down a little.
+        p.vx *= 0.95;
+        p.vy = p.vy * 0.95 + 0.04;
+        moving = true;
       }
 
       if (mouseLive) {
@@ -136,7 +142,7 @@ function createField(canvas, { build, ready }) {
       ctx.globalAlpha = 0.85 + i * 0.03;
       ctx.beginPath();
       for (const p of list) {
-        const s = SIZE + p.a * 2.2;
+        const s = SIZE * p.s + p.a * 2.2;
         ctx.rect(p.x - s / 2, p.y - s / 2, s, s);
       }
       ctx.fill();
@@ -204,6 +210,24 @@ function createField(canvas, { build, ready }) {
         p.vx = p.vy = 0;
         p.a = 0.9;
         p.start = now + (p.hx / W) * 900 + Math.random() * 180;
+      }
+      kick();
+    },
+    // Throw every particle up from one point (canvas coordinates), like a
+    // handful of chalk, then let each one settle into place.
+    toss(x, y) {
+      revealed = true;
+      if (reduceMotion) return draw();
+      const now = performance.now();
+      for (const p of parts) {
+        const angle = -Math.PI / 2 + (Math.random() - 0.5) * 2.2;
+        const speed = 8 + Math.random() * 16;
+        p.x = x + (Math.random() - 0.5) * 24;
+        p.y = y;
+        p.vx = Math.cos(angle) * speed;
+        p.vy = Math.sin(angle) * speed;
+        p.a = 0;
+        p.start = now + 450 + Math.random() * 900;
       }
       kick();
     },

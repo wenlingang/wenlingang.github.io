@@ -329,6 +329,81 @@ function bindTokens() {
 
 // ---------- Agent steps ----------
 
+const GOAT = /^(lbj|lebron( james)?|king james)$/i;
+
+// After a correct answer: think out loud with a progress bar, then open the GOAT page.
+async function thinkThenGo() {
+  const box = $("#goat-think");
+  const label = $("#goat-think-label");
+  const text = $("#goat-think-text");
+  const bar = $("#goat-think-bar");
+  const thought = "LeBron James. Four rings, four Finals MVPs, the all-time scoring record. Drawing the King.";
+  const total = reduceMotion ? 0 : 1800;
+
+  box.hidden = false;
+  agentStatus.busy(true);
+  const t0 = performance.now();
+  while (performance.now() - t0 < total) {
+    const t = performance.now() - t0;
+    label.textContent = `Thinking ${(t / 1000).toFixed(1)}s`;
+    bar.style.width = `${(t / total) * 100}%`;
+    await wait(50);
+  }
+  bar.style.width = "100%";
+  label.textContent = `Thought for ${Math.max(0.1, (performance.now() - t0) / 1000).toFixed(1)}s`;
+  if (reduceMotion) {
+    text.textContent = thought;
+  } else {
+    for (const ch of thought) {
+      text.textContent += ch;
+      await wait(18);
+    }
+  }
+  agentStatus.busy(false);
+  await wait(reduceMotion ? 0 : 500);
+  location.href = "/goat/";
+}
+
+function bindGoat() {
+  const step = $('[data-step="goat"]');
+  const form = $("#goat-form");
+  const input = $("#goat-in");
+  const typed = $("#goat-typed");
+  const reply = $("#goat-reply");
+
+  input.addEventListener("input", () => {
+    typed.textContent = input.value;
+    reply.textContent = "";
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const answer = input.value.trim().replace(/\s+/g, " ");
+    if (!answer || input.disabled) return;
+    if (GOAT.test(answer)) {
+      input.disabled = true;
+      form.classList.add("off");
+      reply.textContent = "";
+      step.classList.remove("waiting");
+      step.classList.add("done");
+      pulseFrom(form, 1.2);
+      thinkThenGo();
+      return;
+    }
+    reply.textContent = "Not quite. Try again.";
+    form.classList.remove("nope");
+    void form.offsetWidth;
+    form.classList.add("nope");
+    input.value = "";
+    typed.textContent = "";
+  });
+
+  return () => {
+    step.classList.add("waiting");
+    if (canHover.matches) input.focus({ preventScroll: true });
+  };
+}
+
 const steps = [...document.querySelectorAll(".step")];
 let chain = Promise.resolve();
 const triggered = new Set();
@@ -394,11 +469,18 @@ const WORK = {
     revealControls(n, performance.now() - t0);
   }, 520),
   work: () => runStep($("#work"), () => wait(reduceMotion ? 0 : 700), 640),
+  goat: async () => {
+    const step = $('[data-step="goat"]');
+    await runStep(step, null, 420);
+    // The step stays open until someone answers.
+    step.classList.remove("done");
+    askGoat();
+  },
   contact: () => runStep($("#contact"), null, 280),
 };
 
 function observeSteps() {
-  const lazy = ["work", "contact"];
+  const lazy = ["work", "goat", "contact"];
   if (!("IntersectionObserver" in window)) {
     lazy.forEach(trigger);
     return;
@@ -435,6 +517,7 @@ renderBio();
 bindTokens();
 const revealControls = bindControls();
 bindCopy();
+const askGoat = bindGoat();
 field.init().then(() => field.reveal());
 trigger("bio");
 observeSteps();

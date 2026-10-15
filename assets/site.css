@@ -462,7 +462,7 @@ a.card:hover { border-color: var(--violet); }
 .art-matrix i.warn { background: var(--gold); box-shadow: 0 0 0 4px var(--gold-wash); }
 .art-matrix i.off { background: transparent; border: 1px dashed var(--line); }
 
-/* Code-style previews shared by Datum, go-socketio2-client and the bank SDKs. */
+/* Code-style previews shared by Keylens, Datum, go-socketio2-client and the bank SDKs. */
 .art-code {
   display: flex;
   flex-direction: column;
@@ -489,6 +489,9 @@ a.card:hover { border-color: var(--violet); }
   color: var(--gold);
   font-size: 11px;
 }
+
+/* Keylens: a key search listing the matching shortcuts. */
+.art-keys b { display: inline-block; width: 4.5em; }
 
 /* go-socketio2-client: protocol packets on the wire. */
 .art-wire i { font-style: normal; display: inline-block; width: 1.6em; }
